@@ -19,9 +19,6 @@ import java.util.UUID;
 public class BillServiceImpl implements BillService {
     private static final Logger LOGGER = LoggerFactory.getLogger(BillServiceImpl.class);
 
-    @ConfigProperty(name = "qiwi.secret.key")
-    String secretKey;
-
     @ConfigProperty(name = "qiwi.site.id")
     String siteId;
 
