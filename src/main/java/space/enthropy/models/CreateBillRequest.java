@@ -1,15 +1,13 @@
 package space.enthropy.models;
 
-import com.qiwi.billpayments.sdk.model.MoneyAmount;
-import com.qiwi.billpayments.sdk.model.in.CustomFields;
-import com.qiwi.billpayments.sdk.model.in.Customer;
 import io.smallrye.common.constraint.NotNull;
 import io.smallrye.common.constraint.Nullable;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.util.List;
 
 @Data
 @SuppressWarnings("all")
@@ -18,13 +16,13 @@ public class CreateBillRequest implements Serializable {
     private static final long serialVersionUID = -7272870757188361520L;
 
     @NotNull
-    private MoneyAmount amount;
+    private Amount amount;
     @Nullable
-    private String comment;
-    @Nullable
-    private ZonedDateTime expirationDateTime;
+    private String expirationDateTime;
     @Nullable
     private Customer customer;
     @Nullable
-    private CustomFields customFields;
+    private Object customFields;
+    @NotEmpty
+    private List<String> flags;
 }

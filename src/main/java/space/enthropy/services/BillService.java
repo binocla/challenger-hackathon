@@ -1,9 +1,10 @@
 package space.enthropy.services;
 
-import com.qiwi.billpayments.sdk.model.out.BillResponse;
+
 import io.smallrye.common.constraint.NotNull;
 import io.smallrye.mutiny.Uni;
 import space.enthropy.models.CreateBillRequest;
+import space.enthropy.models.CreateBillResponse;
 
 import javax.validation.Valid;
 
@@ -16,5 +17,5 @@ public interface BillService {
      * @return created bill
      * @author Sergey Shamov
      */
-    Uni<BillResponse> createBill(@NotNull @Valid CreateBillRequest createBillRequest);
+    Uni<CreateBillResponse> createBill(@NotNull @Valid CreateBillRequest createBillRequest);
 }
