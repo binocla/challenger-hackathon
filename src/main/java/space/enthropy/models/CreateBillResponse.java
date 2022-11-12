@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -14,8 +15,8 @@ public class CreateBillResponse implements Serializable {
     private String billId;
     private String invoiceUid;
     private Amount amount;
-    private String expirationDateTime;
-    private Object status;
+    private Instant expirationDateTime;
+    private Status status;
     private Customer customer;
     private List<String> flags;
     private String payUrl;

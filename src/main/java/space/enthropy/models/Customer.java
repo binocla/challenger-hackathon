@@ -11,6 +11,6 @@ public class Customer implements Serializable {
     @Serial
     private static final long serialVersionUID = 8836854416300008596L;
 
-    @NotBlank
+    @NotBlank(message = "Account required")
     private String account;
 }

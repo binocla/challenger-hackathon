@@ -2,6 +2,7 @@ package space.enthropy.clients;
 
 
 import io.smallrye.mutiny.Uni;
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import space.enthropy.models.CreateBillRequest;
 import space.enthropy.models.CreateBillResponse;
@@ -24,5 +25,5 @@ public interface BillCreateClient {
     Uni<CreateBillResponse> createBill(@PathParam("siteId") String siteId,
                                        @PathParam("billId") String billId,
                                        @HeaderParam("Authorization") String authorization,
-                                       CreateBillRequest createBillRequest);
+                                       @RequestBody CreateBillRequest createBillRequest);
 }

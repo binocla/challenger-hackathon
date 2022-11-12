@@ -32,15 +32,16 @@ public class BillServiceImpl implements BillService {
      * {@inheritDoc}
      */
     @Override
+    @SuppressWarnings("java:S2201")
     public Uni<CreateBillResponse> createBill(@NotNull @Valid CreateBillRequest createBillRequest) {
         // TODO rework
         BigDecimal var = createBillRequest.getAmount().getValue();
         var.setScale(2);
-        LOGGER.info("Creating bill with request: {}", createBillRequest);
+        LOGGER.debug("Creating bill with request: {}", createBillRequest);
         return billCreateClient.createBill(siteId,
                         UUID.randomUUID().toString(),
                         "Bearer " + siteToken,
                         createBillRequest)
-                .invoke(billResponse -> LOGGER.info("Bill created with response: {}", billResponse));
+                .invoke(billResponse -> LOGGER.debug("Bill created with response: {}", billResponse));
     }
 }
