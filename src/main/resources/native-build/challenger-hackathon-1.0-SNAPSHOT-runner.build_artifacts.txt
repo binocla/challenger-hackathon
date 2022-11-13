@@ -1,3 +1,0 @@
-[EXECUTABLE]
-challenger-hackathon-1.0-SNAPSHOT-runner
-
