@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
 public interface BillCreateClient {
 
     @PUT
-    @Path("/partner/payin/v1/sites/{siteId}/bills/{billId}")
+    @Path("/partner/payin/v1/sites/{siteId}/payments/{billId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     Uni<CreateBillResponse> createBill(@PathParam("siteId") String siteId,

@@ -1,56 +1,62 @@
 package space.enthropy.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.smallrye.common.constraint.NotNull;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
+import javax.persistence.Transient;
 import java.io.Serial;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.UUID;
 
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @Entity
-@Table(name = "amounts")
-public class Amount implements Serializable {
+@Table(name = "bills")
+public class CreateBillEntity implements Serializable {
     @Serial
-    private static final long serialVersionUID = 5967569054371806454L;
+    private static final long serialVersionUID = -7272870757188361520L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(nullable = false)
     @JsonIgnore
-    private Long id;
+    private UUID id;
 
-    @NotBlank
-    @Column(nullable = false)
-    private String currency;
-    @Positive
-    @Digits(integer = 10, fraction = 2)
-    @Column(nullable = false)
-    private BigDecimal value;
+    @NotNull
+    @JoinColumn(name = "amount_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Amount amount;
+    @NotNull
+    @Transient
+    private PaymentMethod paymentMethod;
+    @NotNull
+    @JoinColumn(name = "customer_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Customer customer;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Amount amount = (Amount) o;
-        return id != null && Objects.equals(id, amount.id);
+        CreateBillEntity that = (CreateBillEntity) o;
+        return id != null && Objects.equals(id, that.id);
     }
 
     @Override
