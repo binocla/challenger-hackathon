@@ -12,7 +12,6 @@ import javax.validation.constraints.NotBlank;
 public interface PayerService {
 
 
-
     /**
      * Initializes token for payer
      *

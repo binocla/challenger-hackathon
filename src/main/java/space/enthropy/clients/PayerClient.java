@@ -1,6 +1,7 @@
 package space.enthropy.clients;
 
 import io.smallrye.mutiny.Uni;
+import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import space.enthropy.models.PayerConfirmation;
@@ -22,6 +23,7 @@ public interface PayerClient {
     @Path("/partner/payin-tokenization-api/v1/sites/{siteId}/token-requests")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Retry(maxRetries = 5, delay = 2000)
     Uni<PayerTokenResponse> initToken(@PathParam("siteId") String siteId,
                                       @HeaderParam("Authorization") String authorization,
                                       @RequestBody PayerInitToken payerInitToken);
@@ -30,6 +32,7 @@ public interface PayerClient {
     @Path("/partner/payin-tokenization-api/v1/sites/{siteId}/token-requests/complete")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Retry(maxRetries = 5, delay = 2000)
     Uni<PayerTokenResponse> confirmToken(@PathParam("siteId") String siteId,
                                          @HeaderParam("Authorization") String authorization,
                                          @RequestBody PayerConfirmation payerConfirmation);

@@ -21,16 +21,12 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.UUID;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
 
 @ApplicationScoped
 @Transactional
 public class BillServiceImpl implements BillService {
     private static final Logger LOGGER = LoggerFactory.getLogger(BillServiceImpl.class);
-
-    ExecutorService executorService = Executors.newCachedThreadPool();
 
     @ConfigProperty(name = "qiwi.site.id")
     String siteId;
@@ -57,7 +53,6 @@ public class BillServiceImpl implements BillService {
         return billRepository.findBillByAccountId(accountId)
                 .map(bill -> {
                     LOGGER.debug("confirmBill: {}", bill);
-                    // TODO rework
                     BigDecimal var = bill.getAmount().getValue();
                     var.setScale(2);
                     LOGGER.debug("Confirm bill with request NUMBER 1: {}", bill);

@@ -19,16 +19,12 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.util.UUID;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
 
 @ApplicationScoped
 @Transactional
 public class PayerServiceImpl implements PayerService {
     private static final Logger LOGGER = LoggerFactory.getLogger(PayerServiceImpl.class);
-
-    ExecutorService executorService = Executors.newCachedThreadPool();
 
 
     @RestClient

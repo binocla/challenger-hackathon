@@ -2,6 +2,7 @@ package space.enthropy.clients;
 
 
 import io.smallrye.mutiny.Uni;
+import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import space.enthropy.models.CreateBillRequest;
@@ -22,6 +23,7 @@ public interface BillCreateClient {
     @Path("/partner/payin/v1/sites/{siteId}/payments/{billId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Retry(maxRetries = 5, delay = 2000)
     Uni<CreateBillResponse> createBill(@PathParam("siteId") String siteId,
                                        @PathParam("billId") String billId,
                                        @HeaderParam("Authorization") String authorization,
