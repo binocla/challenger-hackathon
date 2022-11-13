@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.hibernate.Hibernate;
 
 import javax.persistence.Column;
@@ -39,10 +40,12 @@ public class Amount implements Serializable {
 
     @NotBlank
     @Column(nullable = false)
+    @Schema(example = "RUB")
     private String currency;
     @Positive
     @Digits(integer = 10, fraction = 2)
     @Column(nullable = false)
+    @Schema(example = "100.00")
     private BigDecimal value;
 
     @Override

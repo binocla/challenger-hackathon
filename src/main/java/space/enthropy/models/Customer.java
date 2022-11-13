@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.hibernate.Hibernate;
 
 import javax.persistence.Column;
@@ -35,6 +36,7 @@ public class Customer implements Serializable {
     private Long id;
 
     @NotBlank(message = "Account required")
+    @Schema(example = "437c71a4-8517-4134-8b3f-a9f11d83548b")
     private String account;
 
     @Override

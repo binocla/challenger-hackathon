@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.hibernate.Hibernate;
 
 import javax.persistence.Column;
@@ -35,8 +36,10 @@ public class PaymentMethod implements Serializable {
     private UUID paymentFakeId;
     @NotBlank
     @Column
+    @Schema(example = "TOKEN")
     private String type;
     @Column
+    @Schema(example = "437c71a4-8517-4134-8b3f-a9f11d83548b")
     private String accountId;
 
     @Override
