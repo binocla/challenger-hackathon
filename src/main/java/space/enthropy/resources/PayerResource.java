@@ -34,24 +34,6 @@ public class PayerResource {
     PayerService payerService;
 
 
-//    @GET
-//    @Path("/{id}")
-//    @Timed(name = "space.enthropy.resources.payerresource.getpayer", description = "A measure of how long it takes to get payer")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Operation(summary = "Handles payer retrieval", description = "Handles payer retrieval")
-//    @APIResponse(responseCode = "200", description = "Payer found", content = @Content(schema = @Schema(implementation = PayerEntity.class), mediaType = MediaType.APPLICATION_JSON))
-//    @APIResponse(responseCode = "404", description = "Payer not found")
-//    public Uni<RestResponse<PayerEntity>> getPayer(@PathParam("id") UUID id) {
-//        LOGGER.debug("getPayer: {}", id);
-//        return payerService.getPayerById(id)
-//                .onItem().transform(resp -> {
-//                    if (resp == null) {
-//                        return RestResponse.notFound();
-//                    }
-//                    return RestResponse.ok(resp);
-//                });
-//    }
-
     @POST
     @Path("/token/init/{siteId}")
     @Timed(name = "space.enthropy.resources.payerresource.inittokenforpayer", description = "A measure of how long it takes to init token for payer")

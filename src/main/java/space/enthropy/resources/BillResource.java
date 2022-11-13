@@ -64,7 +64,7 @@ public class BillResource {
         });
     }
 
-    @POST
+    @GET
     @Path("/{accountId}/pay")
     @Timed(name = "space.enthropy.resources.billresource.confirmbill", description = "A measure of how long it takes to confirm bill")
     @Consumes(MediaType.APPLICATION_JSON)

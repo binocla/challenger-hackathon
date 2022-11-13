@@ -1,5 +1,6 @@
 package space.enthropy.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -31,15 +32,17 @@ public class PaymentMethod implements Serializable {
     @NotBlank
     @Id
     @Column(name = "id", nullable = false)
+    @Schema(example = "d83aa5ce-a60f-4798-b98b-17e8249e8d29")
     private String paymentToken;
     @Column
+    @JsonIgnore
     private UUID paymentFakeId;
     @NotBlank
     @Column
     @Schema(example = "TOKEN")
     private String type;
     @Column
-    @Schema(example = "437c71a4-8517-4134-8b3f-a9f11d83548b")
+    @JsonIgnore
     private String accountId;
 
     @Override
